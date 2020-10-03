@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?Fira+Sans:wght@500&family=Syne:wght@500&display=swap');
+
+:root {
+  --title-font: 'Fira Sans', sans-serif;
+  --content-font: 'Noto Serif', serif;
+  --bg-color: rgb(24, 26, 27);
+  --main-color: rgb(151, 39, 39);
+  --white: rgb(218, 218, 218);
+  --grey: rgb(93, 93, 93);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+  list-style: none;
+  background-color: var(--bg-color);
+  color: rgb(218, 218, 218);
+}
+
+header {
+  grid-area: header;
+}
+
+header h1 {
+  font-size: 4rem;
+  font-family: var(--title-font);
+  border-left: 10px var(--main-color) solid;
+  padding: 0.5rem;
+}
+
+header h2 {
+  color: var(--grey);
+  font-size: 1rem;
+  font-family: var(--title-font);
+  margin: 1rem 0;
+}
+
+#socials {
+  grid-area: socials;
+  margin: 2rem 0;
+}
+
+#socials h1 {
+  font-size: 2.5rem;
+}
+
+#socials ul {
+  display: flex;
+  flex-direction: column;
+}
+
+#socials ul a {
+  width: min-content;
+}
+
+#socials ul li {
+  font-family: var(--content-font);
+  font-size: 1rem;
+  color: white;
+  border-left: 5px rgb(160, 160, 160) solid;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+#socials ul a :hover {
+  transform: translateX(1rem);
+  transition: transform 0.2s ease-in-out;
+}
+
+#soundcloud {
+  border-color: rgb(199, 73, 0) !important;
+}
+
+#instagram {
+  border-color: rgb(207, 93, 211) !important;
+}
+
+#facebook {
+  border-color: rgb(43, 76, 221) !important;
+}
+
+#twitch {
+  border-color: rgb(97, 43, 221) !important;
+}
+
+#twitter {
+  border-color: rgb(43, 126, 221) !important;
+}
+
+#olderPosts {
+  grid-area: older-posts;
+  margin: 2rem 0;
+}
+
+#olderPosts h1 {
+  font-size: 2.5rem;
+}
+
+#olderPosts ul {
+  display: flex;
+  flex-direction: column;
+}
+
+#olderPosts ul li {
+  font-family: var(--content-font);
+  font-size: 1rem;
+  color: white;
+  border-left: 5px rgb(160, 160, 160) solid;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+#olderPosts ul a :hover {
+  transform: translateX(1rem);
+  transition: transform 0.2s ease-in-out;
+}
+
+#post {
+  justify-self: end;
+  grid-area: post;
+  max-width: 90%;
+}
+
+#post h1 {
+  font-size: 3rem;
+  font-family: var(--title-font);
+  border-left: 7px var(--main-color) solid;
+  padding: 0.5rem;
+}
+
+#post .info {
+  margin: 1rem 0;
+}
+
+#post small {
+  font-size: 1rem;
+  color: rgb(93, 93, 93);
+  font-style: italic;
+  display: block;
+}
+
+#post p {
+  font-size: 1rem;
+  font-family: var(--content-font);
+  margin: 1rem;
+  padding: 1rem;
+  border: 3px rgba(255, 255, 255, 0.4) solid;
+  border-radius: 1rem;
+}
+
+.grid-container {
+  margin: 3rem;
+  display: grid;
+  grid-template-areas:
+    'header post'
+    'socials post'
+    'older-posts post';
+}

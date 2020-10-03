@@ -1,0 +1,1 @@
+export const postElement = document.querySelector('#post');
