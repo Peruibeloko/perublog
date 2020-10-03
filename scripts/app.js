@@ -1,22 +1,58 @@
 import { posts } from './posts.js';
+import {
+  firstPostBtn,
+  lastPostBtn,
+  nextPostBtn,
+  previousPostBtn,
+  randomPostBtn
+} from './anchor.js';
 import { Post } from './Post.js';
-
-window.addEventListener('DOMContentLoaded', pageLoadHandler);
-window.addEventListener('hashchange', hashChangeHandler, false);
 
 dayjs.locale('pt-br');
 dayjs.extend(window.dayjs_plugin_relativeTime);
 
-function hashChangeHandler() {
-  const postNum = location.hash;
-  getPost(postNum);
-}
+window.addEventListener('DOMContentLoaded', pageLoadHandler);
+window.addEventListener('hashchange', hashChangeHandler, false);
 
 function pageLoadHandler() {
-  getPost(0)
+  lastPostBtn.addEventListener('click', () => (window.location = ''));
+  nextPostBtn.addEventListener('click', getRelativePost.bind(null, -1));
+  randomPostBtn.addEventListener('click', getRandomPost);
+  previousPostBtn.addEventListener('click', getRelativePost.bind(null, 1));
+  firstPostBtn.addEventListener(
+    'click',
+    () => (window.location = `#${posts.length - 1}`)
+  );
+
+  hashChangeHandler();
 }
 
-function getPost(num) {
-  const newPost = new Post(posts[num]);
-  newPost.setContent();
+function hashChangeHandler() {
+  const postNum = +location.hash.substring(1);
+  const didCreate = !!new Post(posts[postNum]);
+
+  console.log(didCreate, postNum, posts.length);
+
+  lastPostBtn.removeAttribute('disabled');
+  nextPostBtn.removeAttribute('disabled');
+  previousPostBtn.removeAttribute('disabled');
+  firstPostBtn.removeAttribute('disabled');
+
+  if (postNum === 0) {
+    lastPostBtn.setAttribute('disabled', true);
+    nextPostBtn.setAttribute('disabled', true);
+  } else if (postNum === posts.length - 1) {
+    previousPostBtn.setAttribute('disabled', true);
+    firstPostBtn.setAttribute('disabled', true);
+  }
+}
+
+function getRelativePost(offset) {
+  const postNum = +location.hash.substring(1) + offset;
+  window.location = `#${postNum}`;
+}
+
+function getRandomPost() {
+  const postNum = Math.round(Math.random() * (posts.length - 1));
+  window.location = `#${postNum}`;
 }
