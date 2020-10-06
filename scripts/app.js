@@ -4,7 +4,11 @@ import {
   lastPostBtn,
   nextPostBtn,
   previousPostBtn,
-  randomPostBtn
+  randomPostBtn,
+  socialBar,
+  backdrop,
+  hambOpen,
+  hambClose
 } from './anchor.js';
 import { Post } from './Post.js';
 
@@ -23,6 +27,16 @@ function pageLoadHandler() {
     'click',
     () => (window.location = `#${posts.length - 1}`)
   );
+
+  hambOpen.addEventListener('click', () => {
+    socialBar.classList.add('active');
+    backdrop.classList.add('active');
+  });
+
+  hambClose.addEventListener('click', () => {
+    socialBar.classList.remove('active');
+    backdrop.classList.remove('active');
+  });
 
   hashChangeHandler();
 }

@@ -38,6 +38,10 @@ header h2 {
   margin: 1rem 0;
 }
 
+header #hamb {
+  display: none;
+}
+
 #socials {
   grid-area: socials;
   margin: 2rem 0;
@@ -166,4 +170,110 @@ header h2 {
   grid-template-areas:
     'header post navlist'
     'socials post navlist';
+}
+
+#backdrop {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  header {
+    border-bottom: 3px var(--main-color) solid;
+  }
+
+  header h1 {
+    border-left: none;
+  }
+
+  header h2 {
+    display: none;
+  }
+
+  header #hamb {
+    cursor: pointer;
+    display: block;
+    font-size: 3rem;
+    position: absolute;
+    top: 3rem;
+    right: 2.5rem;
+  }
+
+  #navlist {
+    display: none;
+  }
+
+  #socials {
+    margin: 0;
+    padding: 2rem;
+    width: 80vw;
+    height: 100vh;
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 20;
+    transform: translateX(100%);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  #socials.active {
+    transform: translateX(0);
+  }
+
+  #close {
+    cursor: pointer;
+    font-size: 2rem;
+    position: fixed;
+    display: block;
+    top: 2.3rem;
+    right: 2rem;
+  }
+
+  #post h1 {
+    text-align: center;
+    margin-top: 1rem;
+    border-left: none;
+  }
+
+  #post .info {
+    margin-top: 0;
+    margin-bottom: 3rem;
+  }
+
+  #author {
+    text-align: center;
+    margin-top: 0;
+    font-size: 0.5rem;
+  }
+
+  #date {
+    text-align: center;
+    margin-top: 0;
+    font-size: 0.5rem;
+  }
+
+  #backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    opacity: 0;
+  }
+
+  #backdrop.active {
+    display: block;
+    opacity: 100%;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  .grid-container {
+    margin: 1.5rem;
+    grid-template-areas:
+      'header'
+      'post';
+  }
 }

@@ -1,5 +1,9 @@
 // Elementos
 const postElement = document.querySelector('#post');
+const socialBar = document.querySelector('#socials');
+const backdrop = document.querySelector('#backdrop');
+const hambOpen = document.querySelector('#hamb');
+const hambClose = document.querySelector('#close');
 
 // Navbar
 const lastPostBtn = document.querySelector('#lastPost');
@@ -14,5 +18,9 @@ export {
   nextPostBtn,
   randomPostBtn,
   previousPostBtn,
-  firstPostBtn
+  firstPostBtn,
+  socialBar,
+  backdrop,
+  hambOpen,
+  hambClose
 };
