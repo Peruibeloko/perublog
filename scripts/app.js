@@ -69,7 +69,10 @@ function getRelativePost(offset) {
   window.location = `#${postNum}`;
 }
 
-function getRandomPost() {
-  const postNum = Math.round(Math.random() * (posts.length - 1));
+async function getRandomPost() {
+  const fetchData = await fetch('https://perublog.herokuapp.com/post/count');
+  const postCount = await fetchData.json();
+
+  const postNum = Math.round(Math.random() * postCount);
   window.location = `#${postNum}`;
 }

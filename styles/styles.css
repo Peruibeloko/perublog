@@ -7,6 +7,7 @@
   --main-color: rgb(151, 39, 39);
   --black: rgb(24, 26, 27);
   --gray: rgb(93, 93, 93);
+  --dark-gray: rgb(20, 20, 20);
   --light-gray: rgb(160, 160, 160);
   --white: rgb(218, 218, 218);
 }
@@ -127,7 +128,7 @@ header #hamb {
 }
 
 #navlist ul li button:disabled {
-  border-right: 5px var(--light-gray) solid;
+  border-color: var(--light-gray);
 }
 
 #navlist ul li button:enabled:hover {
@@ -138,7 +139,7 @@ header #hamb {
 #post {
   justify-self: center;
   grid-area: post;
-  width: 90%;
+  width: 60%;
 }
 
 #post h1 {
@@ -165,6 +166,7 @@ header #hamb {
   font-family: var(--serif-regular);
   margin: 1rem;
   padding: 1rem;
+  background-color: var(--dark-gray);
   border: 3px rgba(255, 255, 255, 0.4) solid;
   border-radius: 1rem;
 }
@@ -183,6 +185,7 @@ header #hamb {
 
 @media (max-width: 768px) {
   header {
+    margin: 0 1.5rem;
     border-bottom: 3px var(--main-color) solid;
   }
 
@@ -204,7 +207,27 @@ header #hamb {
   }
 
   #navlist {
-    display: none;
+    padding: 0 1.5rem;
+    display: block;
+    position: relative;
+    width: 100%;
+  }
+
+  #navlist ul {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  #navlist ul li {
+    width: 20%;
+    padding: 0.3rem;
+  }
+
+  #navlist ul li button {
+    width: 100%;
+    text-align: center;
+    border-right: none;
+    border-bottom: 5px var(--main-color) solid;
   }
 
   #socials {
@@ -234,6 +257,10 @@ header #hamb {
     right: 2rem;
   }
 
+  #post {
+    width: 100%;
+  }
+
   #post h1 {
     text-align: center;
     margin-top: 1rem;
@@ -243,6 +270,13 @@ header #hamb {
   #post .info {
     margin-top: 0;
     margin-bottom: 3rem;
+  }
+
+  #post p {
+    margin: 0;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
   }
 
   #author {
@@ -276,9 +310,10 @@ header #hamb {
   }
 
   .grid-container {
-    margin: 1.5rem;
+    margin: 1.5rem 0;
     grid-template-areas:
       'header'
-      'post';
+      'post'
+      'navlist';
   }
 }
