@@ -1,4 +1,3 @@
-import { posts } from './posts.js';
 import {
   firstPostBtn,
   lastPostBtn,
@@ -23,10 +22,7 @@ function pageLoadHandler() {
   nextPostBtn.addEventListener('click', getRelativePost.bind(null, -1));
   randomPostBtn.addEventListener('click', getRandomPost);
   previousPostBtn.addEventListener('click', getRelativePost.bind(null, 1));
-  firstPostBtn.addEventListener(
-    'click',
-    () => (window.location = `#${posts.length - 1}`)
-  );
+  firstPostBtn.addEventListener('click', () => (window.location = '#1'));
 
   hambOpen.addEventListener('click', () => {
     socialBar.classList.add('active');
@@ -41,11 +37,18 @@ function pageLoadHandler() {
   hashChangeHandler();
 }
 
-function hashChangeHandler() {
+async function hashChangeHandler() {
   const postNum = +location.hash.substring(1);
-  const didCreate = !!new Post(posts[postNum]);
+  const fetchData = await fetch(
+    `https://perublog.herokuapp.com/post/${postNum}`
+  );
 
-  console.log(didCreate, postNum, posts.length);
+  try {
+    const postData = await fetchData.json();
+    new Post(postData);
+  } catch {
+    new Post(null);
+  }
 
   lastPostBtn.removeAttribute('disabled');
   nextPostBtn.removeAttribute('disabled');
@@ -55,7 +58,7 @@ function hashChangeHandler() {
   if (postNum === 0) {
     lastPostBtn.setAttribute('disabled', true);
     nextPostBtn.setAttribute('disabled', true);
-  } else if (postNum === posts.length - 1) {
+  } else if (postNum === 1) {
     previousPostBtn.setAttribute('disabled', true);
     firstPostBtn.setAttribute('disabled', true);
   }

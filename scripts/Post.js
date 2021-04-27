@@ -2,19 +2,10 @@ import { postElement } from './anchor.js';
 
 export class Post {
   constructor(data) {
-    if (data === undefined) {
-      // 404
-      this.title = 'Pô, aí não amigão...';
-      this.author = {
-        name: 'Carlos',
-        date: null
-      };
-      this.content = 'Foi caçar coisa que não devia, achou nada!';
-    } else {
-      this.title = data.title;
-      this.author = data.author;
-      this.content = data.content;
-    }
+    this.title = data?.title || 'Pô, aí não amigão...';
+    this.author = data?.author || 'Carlos';
+    this.datetime = data?.datetime || null;
+    this.post = data?.post || 'Foi caçar coisa que não devia, achou nada!';
     this.setContent();
   }
 
@@ -27,13 +18,13 @@ export class Post {
     const dates = this.getTimeStrings();
 
     titleEl.innerText = this.title;
-    authorEl.innerText = `Post feito por ${this.author.name} ${dates[0]}`;
+    authorEl.innerText = `Post feito por ${this.author} ${dates[0]}`;
     dateEl.innerText = `${dates[1]}`;
-    contentEl.innerText = this.content;
+    contentEl.innerText = this.post;
   }
 
   getTimeStrings() {
-    const date = this.author.date;
+    const date = this.datetime;
     return [
       date ? `${dayjs(date).fromNow()} atrás` : 'há 13.2Bi de anos atrás',
       date ? `${dayjs(date).format('DD/MM/YYYY HH[h]mm')}` : '31/02/1999 25h30'
