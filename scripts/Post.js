@@ -20,7 +20,7 @@ export class Post {
     titleEl.innerText = this.title;
     authorEl.innerText = `Post feito por ${this.author} ${dates[0]}`;
     dateEl.innerText = `${dates[1]}`;
-    contentEl.innerText = this.post;
+    contentEl.innerHTML = this.post;
   }
 
   getTimeStrings() {
